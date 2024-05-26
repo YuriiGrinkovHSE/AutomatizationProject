@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Простой шаблон с вкладками</title>
+  <link rel="stylesheet" href="static/css/default.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">О нас</a></li>
+      <li><a href="/createProject">Рассчитать проект</a></li>
+      <li><a href="/contact">Связаться с нами</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="home">
+      <h1>Рассчитать стоимость проекта</h1>
+      <form id="form" action="/createProject" method="post">
+
+        <h3 id="options-heading">Выберите город</h3>
+        <select id="cityOpt" name="cityOpt">
+            <option value="Москва">Москва</option>
+            <option value="Санкт-Петербург">Санкт-Петербург</option>
+        </select>
+
+        <h3 id="options-headingdistr">Выберите район</h3>
+        <select required name="MskDistrictOpt" id="MskDistrictOpt">
+            <option value="ЦАО">ЦАО</option>
+            <option value="САО">САО</option>
+            <option value="СВАО">СВАО</option>
+            <option value="ВАО">ВАО</option>
+            <option value="ЮВАО">ЮВАО</option>
+            <option value="ЮЗАО">ЮЗАО</option>
+            <option value="СЗАО">СЗАО</option>
+            <option value="Зеленоградский">Зеленоградский</option>
+            <option value="Новомосковский">Новомосковский</option>
+            <option value="Троицкий">Троицкий</option>
+        </select>
+        <select required name="spbDistrictOpt" id="spbDistrictOpt" hidden="hidden">
+            <option value="Центральный">Центральный</option>
+            <option value="Адмиралтейский">Адмиралтейский</option>
+            <option value="Василеостровский">Василеостровский</option>
+            <option value="Выборгский">Выборгский</option>
+            <option value="Калининский">Калининский</option>
+            <option value="Кировский">Кировский</option>
+            <option value="Колпинский">Колпинский</option>
+            <option value="Красногвардейский">Красногвардейский</option>
+            <option value="Красносельский">Красносельский</option>
+            <option value="Кронштадский">Кронштадский</option>
+            <option value="Курортный">Курортный</option>
+            <option value="Московский">Московский</option>
+            <option value="Невский">Невский</option>
+            <option value="Петроградский">Петроградский</option>
+            <option value="Петродворцовый">Петродворцовый</option>
+            <option value="Пушкинский">Пушкинский</option>
+            <option value="Фрунзенский">Фрунзенский</option>
+
+        </select>
+          <h3>Выберите тип строения</h3>
+          <select required id="buildingType" name="buildingType">
+            <option value="Больница">Больница</option>
+            <option value="Школа">Школа</option>
+          </select>
+
+            <div id="schoolOpts">
+              <h3  id="schoolTypeH">Профиль школы</h3>
+              <select name="schoolType" id="schoolType" class="schooltype">
+                <option value="Не выбрано">Не выбрано</option>
+                <option value="Математический">Математический</option>
+                <option value="Лингвистический">Лингвистический</option>
+                <option value="Естественнонаучный">Естественнонаучный</option>
+                <option value="Технический">Технический</option>
+                <option value="Технологический">Технологический</option>
+              </select>
+            </div>
+
+
+          <div id="hospitalOpts" >
+              <h3 id="hospitalOptsH">Услуги больницы</h3>
+            <p><input class="hospitalOpt" name="isSurgery" type="checkbox" >Хирургия</p>
+            <p><input class="hospitalOpt" name="isPulmotology" type="checkbox" >Пульманология</p>
+            <p><input class="hospitalOpt" name="isCardiology" type="checkbox" >Кардиология</p>
+            <p><input class="hospitalOpt" name="isOntology" type="checkbox" >Онтология</p>
+            <p><input class="hospitalOpt" name="isNeurology" type="checkbox" >Неврология</p>
+            <p><input class="hospitalOpt" name="isTheraphy" type="checkbox" >Терапия</p>
+          </div>
+
+          <p>Количество человек: <label id="ranger"></label><input name="limit" id="c" type="range" min="100" max="10000" step="1"></p>
+
+
+          <input type="submit" value="Отправить">
+        </form>
+
+    </section>
+      {% if model_score %}
+          <section>
+              <h3>Итоговая оценка: {{ model_score }} руб.</h3>
+                {#   TODO : add metrics #}
+                <button>Скачать отчет Excell</button>
+          </section>
+      {% endif %}
+
+  </main>
+<script src='static/js/open_button.js' > </script>
+</body>
+
+</html>
